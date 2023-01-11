@@ -10,4 +10,7 @@ group :development do
   gem 'bacon'
   gem 'mocha-on-bacon'
   gem 'prettybacon'
+  gem "rubyzip"
+  gem 'httparty'
+  gem 'rubyXL'
 end
