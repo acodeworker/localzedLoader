@@ -65,9 +65,11 @@ class BundleGenerater
     end
 
     file_til.getLangList.each do |lang|
-      path = "/#{lang}.lproj/Localizable.strings"
-      FileUtils.mv(".#{path}",bundPath+path)
-      FileUtils.rm_rf File.dirname ".#{path}"
+      path = "#{lang}.lproj/Localizable.strings"
+      dest = bundPath + "/#{lang}.lproj"
+      FileUtils.mkdir_p dest
+      FileUtils.mv("./#{path}",dest,force:true)
+      FileUtils.rm_rf File.dirname("./#{path}")
     end
     puts "多语言拷贝到目录:#{bundPath}"
 
@@ -94,7 +96,7 @@ class BundleGenerater
 
 end
 #
-BundleGenerater.generate
+# BundleGenerater.generate
 # ios_list = ["%@","%d"]
 # str = "{#}盏灯开着,真的吗{#}"
 # i = -1
