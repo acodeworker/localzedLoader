@@ -2,6 +2,7 @@
 require_relative './LanguageDownloader'
 require_relative  './File_util'
 require 'fileutils'
+require 'colored2'
 
 class BundleGenerater
   def self.generate
@@ -17,7 +18,7 @@ class BundleGenerater
     if File.exist? f_path
       FileUtils.rm_rf f_path
     end
-    puts "一共有 #{hash.keys.size} 条文案"
+    puts "一共有 #{hash.keys.size} 条文案".green
 
     # 创建文件夹
     file_til.getLangList.each do |lang|
@@ -43,7 +44,8 @@ class BundleGenerater
     end
 
     #验证导出的多语言包格式是否正确
-    puts "\e[31m 开始校验多语言包格式\e[0m"
+    puts '开始校验多语言包格式'.red
+    # puts "\e[31m 开始校验多语言包格式\e[0m"
     file_til.getLangList.each do |lang|
       localized_file = "./#{lang}.lproj/Localizable.strings"
       system("plutil #{localized_file}")
@@ -106,3 +108,4 @@ end
 # end
 #
 # p str
+# puts "111".green

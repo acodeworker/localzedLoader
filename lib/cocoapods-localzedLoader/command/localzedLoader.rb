@@ -18,13 +18,13 @@ module Pod
     #       in the `plugins.json` file, once your plugin is released.
     #
     class Localzedloader < Command
-      self.summary = 'Short description of cocoapods-localzedLoader.'
+      self.summary = '下载多语言包'
 
       self.description = <<-DESC
-        Longer description of cocoapods-localzedLoader.
+        从云端下载多语言包并更新到本地
       DESC
 
-      self.arguments = 'NAME'
+      # self.arguments = 'NAME'
 
       def initialize(argv)
         @name = argv.shift_argument
