@@ -41,7 +41,7 @@ user-agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (
 
     #下载文件
 
-    params = {"projectIdList":[5],"langIds":[1,2,3,9,10,11,12,13,14,15],"fileTypeList":["excel"],"auditState":1,"valueState":0,"userId":"","value":"","tagIds":nil,"bizUseTagIds":nil,"pkeys":[]}
+    params = {"projectIdList":[5],"langIds":[1,2,3,9,10,11,12,13,14,15,16],"fileTypeList":["excel"],"auditState":1,"valueState":0,"userId":"","value":"","tagIds":nil,"bizUseTagIds":nil,"pkeys":[]}
     response = HTTParty.post('https://intl-lang.aqara.com/v1.0/lumi/language/file/export', body: JSON.generate(params), headers:LanguageDownloader.makeHeader)
     # puts response.body
     unless response.body["code"] == nil
