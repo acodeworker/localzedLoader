@@ -1,3 +1,5 @@
+
+require_relative '../ios_bundle_generate'
 module Pod
   class Command
     # This is an example of a cocoapods plugin adding a top-level subcommand
@@ -18,26 +20,17 @@ module Pod
     #       in the `plugins.json` file, once your plugin is released.
     #
     class Localzedloader < Command
-      self.summary = '下载多语言包'
+      self.summary = 'langDownnloader for user'
 
       self.description = <<-DESC
-        从云端下载多语言包并更新到本地
+        help user downnloade language resource
       DESC
 
-      # self.arguments = 'NAME'
-
-      def initialize(argv)
-        @name = argv.shift_argument
-        super
-      end
-
-      def validate!
-        super
-        help! 'A Pod name is required.' unless @name
-      end
+      self.arguments = []
 
       def run
-        UI.puts "Add your implementation for the cocoapods-localzedLoader plugin in #{__FILE__}"
+        # UI.puts "Add your implementation for the cocoapods-LangDownnloader plugin in #{__FILE__}"
+        BundleGenerater.generate
       end
     end
   end
