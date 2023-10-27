@@ -28,9 +28,20 @@ module Pod
 
       self.arguments = []
 
+      def initialize(argv)
+        super
+        project_directory = argv.option('project-directory')
+        project_directory = Dir.pwd if project_directory.nil?
+        @project_directory = Pathname.new(project_directory).expand_path
+      end
+      def self.options
+        [
+          ['--project-directory=/project/dir/', 'The path to the root of the project directory']
+        ].concat(super)
+      end
       def run
-        # UI.puts "Add your implementation for the cocoapods-LangDownnloader plugin in #{__FILE__}"
-        BundleGenerater.generate
+        UI.puts "项目路径 #{@project_directory}"
+        BundleGenerater.generate(@project_directory)
       end
     end
   end

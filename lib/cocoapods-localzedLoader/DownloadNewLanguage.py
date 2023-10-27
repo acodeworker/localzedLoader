@@ -1,6 +1,5 @@
-import os
 import shutil
-
+import os, sys, stat
 import requests
 # import zipfile
 
@@ -48,7 +47,7 @@ def MakeHeader(headerText):
     s = {x.split(':', 1)[0].strip() :x.split(':', 1)[1].strip() for x in s}
     return s
 
-def DownLatestLocalizableSource():
+def DownLatestLocalizableSource(downloadPath):
     iam_service = IamService()
     ak = 'AKLTZTFjNzFjYTczMzJjNGQyMjg0NTRkZjQ2ZTA4MTE1Mjc'
     sk = 'TkdRMU9HSTJZemt6Tmpkak5ERXhaVGt5WXpVNU5qSmxPVFkzWWpBM1pqRQ=='
@@ -72,8 +71,8 @@ def DownLatestLocalizableSource():
     resp = iam_service.session.get(url, headers=r.headers,
                             timeout=(service_info.connection_timeout,service_info.socket_timeout))
     if resp.status_code == 200:
-        print('成功l----')
-        with open("download" + ".xlsx", "wb") as code:
+        print('下载exccel成功')
+        with open(downloadPath+"/download.xlsx", "wb") as code:
             # 将 response 保存成本地文件
             code.write(resp.content)
             code.close()
@@ -99,4 +98,5 @@ def UpdateSource_language():
 #     os.remove('./download.xlsx')
 
 if __name__ == '__main__':
-    UpdateSource_language()
+    localizable_path = sys.argv[1]
+    DownLatestLocalizableSource(localizable_path)

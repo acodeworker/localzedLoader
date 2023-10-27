@@ -7,11 +7,10 @@ class BundleGenerater
 
   # INFO_PLIST_ARRAY = [NSAppleMusicUsageDescription","NSLocalNetworkUsageDescription"]
   INFO_PLIST_MAP = {:common_app_name=>["CFBundleDisplayName"],other_perm_camera_permission_description:["NSCameraUsageDescription"],other_perm_location_permission_description:["NSLocationAlwaysAndWhenInUseUsageDescription","NSLocationWhenInUseUsageDescription","NSLocationAlwaysUsageDescription"],other_perm_bluetooth_permission_description:["NSBluetoothPeripheralUsageDescription","NSBluetoothAlwaysUsageDescription"],access_content_permssion_storage:["NSPhotoLibraryUsageDescription"],other_perm_mic_permission_description:["NSMicrophoneUsageDescription"],other_set_permissions_homedata_desc:["NSHomeKitUsageDescription"],other_set_permissions_asr_text:["NSSpeechRecognitionUsageDescription"],device_add_device:["Add_Device_Title"],automation_add:["Add_Automation_Title"],device_create_scene:["Add_Scene_Title"]}
-  def self.generate
+  def self.generate(project_path)
     # 下载excel
-    puts __FILE__
-    system "cd #{File.dirname(__FILE__)};python3 DownloadNewLanguage.py"
-    f_path = "#{File.dirname(__FILE__)}/download.xlsx"
+    system "cd #{File.dirname(__FILE__)};python3 DownloadNewLanguage.py #{project_path}"
+    f_path = "#{project_path}/download.xlsx"
     print(f_path)
 
     # 读取excel到内存
